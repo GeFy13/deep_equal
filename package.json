@@ -1,0 +1,17 @@
+{
+  "name": "deep-equal-project",
+  "version": "1.0.0",
+  "main": "src/deepEqual.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true
+  },
+  "author": "George Fiyalo"
+}
