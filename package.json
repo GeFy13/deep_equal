@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "src/deepEqual.js",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest"
   },
   "devDependencies": {
     "jest": "^29.0.0"

@@ -17,3 +17,10 @@ This project implements a custom `deepEqual` function for deep comparison of obj
 
 ```bash
 npm install
+```
+
+## Run test
+
+```bash
+npm test
+```
