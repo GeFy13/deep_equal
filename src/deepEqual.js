@@ -35,18 +35,42 @@ function deepEqual(obj1, obj2) {
         return obj1 === obj2;
     }
 
-    // Handle arrays
+    if (obj1 instanceof Map && obj2 instanceof Map) {
+
+        const keys1 = Array.from(obj1.keys())
+        const keys2 = Array.from(obj2.keys())
+
+        if (!deepEqual(keys1, keys2)) {
+            return false;
+        }
+
+        const values1 = Array.from(obj1.values())
+        const values2 = Array.from(obj2.values())
+
+        if (!deepEqual(values1, values2)) {
+            return false;
+        }
+    }
+
+    if (obj1 instanceof Set && obj2 instanceof Set) {
+        const values1 = Array.from(obj1)
+        const values2 = Array.from(obj2)
+
+        if (!deepEqual(values1, values2)) {
+            return false;
+        }
+    }
+
     if (Array.isArray(obj1) && Array.isArray(obj2)) {
         if (obj1.length !== obj2.length) {
             return false;
         }
-        
+
         for (let i = 0; i < obj1.length; i++) {
             if (!deepEqual(obj1[i], obj2[i])) {
                 return false;
             }
         }
-        return true;
     }
 
     // Handle cases where one is array and other is not
@@ -57,25 +81,51 @@ function deepEqual(obj1, obj2) {
     // Handle objects
     const keys1 = Object.keys(obj1);
     const keys2 = Object.keys(obj2);
-
+    
     // Check if number of properties is different
     if (keys1.length !== keys2.length) {
         return false;
     }
-
+    
     // Check if all keys in obj1 exist in obj2
     for (const key of keys1) {
         if (!keys2.includes(key)) {
             return false;
         }
     }
-
+    
     // Recursively compare values for each key
     for (const key of keys1) {
         if ((obj1[key] === obj1) && (obj2[key] === obj2)) {
             continue;
         }
+        
+        if (!deepEqual(obj1[key], obj2[key])) {
+            return false;
+        }
+    }
 
+    const symkeys1 = Object.getOwnPropertySymbols(obj1)
+    const symkeys2 = Object.getOwnPropertySymbols(obj2)
+
+    // Check if number of properties is different
+    if (symkeys1.length !== symkeys2.length) {
+        return false;
+    }
+    
+    // Check if all keys in obj1 exist in obj2
+    for (const key of symkeys1) {
+        if (!symkeys2.includes(key)) {
+            return false;
+        }
+    }
+    
+    // Recursively compare values for each key
+    for (const key of symkeys1) {
+        if ((obj1[key] === obj1) && (obj2[key] === obj2)) {
+            continue;
+        }
+        
         if (!deepEqual(obj1[key], obj2[key])) {
             return false;
         }
@@ -83,5 +133,12 @@ function deepEqual(obj1, obj2) {
 
     return true;
 }
+
+const sym = Symbol("test");
+const obj2 = { [sym]: 'value' };
+const obj3 = { [Symbol("test")]: 'value' };
+const obj1 = { "test": 'value' };
+
+console.log(deepEqual(obj2, obj3))
 
 module.exports = deepEqual;

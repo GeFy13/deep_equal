@@ -95,7 +95,7 @@ describe('deepEqual function tests', () => {
         expect(deepEqual(/abc/g, 'abc')).toBe(false);
     });
 
-    test('should correctly handle objects with circular references', () => {
+    test('should correctly compare objects with circular references', () => {
         const obj1 = { name: 'John' };
         const obj2 = { name: 'John' };
         obj1.self = obj1;
@@ -106,7 +106,7 @@ describe('deepEqual function tests', () => {
         expect(() => deepEqual(obj1, obj2)).not.toThrow();
     });
 
-    test('should handle objects with different key orders', () => {
+    test('should correctly compare objects with different key orders', () => {
         const obj1 = { a: 1, b: 2, c: 3 };
         const obj2 = { b: 2, c: 3, a: 1 };
 
@@ -120,7 +120,7 @@ describe('deepEqual function tests', () => {
         expect(deepEqual(0, -0)).toBe(true); // 0 and -0 are equal in strict equality
     });
 
-    test('should correctly handle objects with Symbol properties', () => {
+    test('should correctly compare objects with Symbol properties', () => {
         const sym = Symbol("test");
         const obj1 = { [sym]: 'value' };
         const obj2 = { [sym]: 'value' };
