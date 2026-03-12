@@ -137,4 +137,4 @@ function deepEqual(obj1, obj2) {
     return true;
 }
 
-module.exports = deepEqual;
+export default deepEqual;

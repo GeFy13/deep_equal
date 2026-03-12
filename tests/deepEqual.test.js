@@ -1,4 +1,4 @@
-const deepEqual = require('../src/DeepEqual');
+import deepEqual from '../src/deepEqual.js';
 
 describe('deepEqual function tests', () => {
     

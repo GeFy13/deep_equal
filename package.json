@@ -1,16 +1,16 @@
 {
   "name": "deep-equal-project",
   "version": "1.0.0",
+  "type": "module",
   "main": "src/deepEqual.js",
+
   "scripts": {
     "test": "jest"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.0",
+    "babel-jest": "^29.0.0",
     "jest": "^29.0.0"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "verbose": true
   },
   "author": "George Fiyalo"
 }
